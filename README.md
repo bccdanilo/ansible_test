@@ -1,6 +1,6 @@
 # ansible_test
 
-3.yaml -> task
+task.yaml -> task
 
 hosts -> hosts ips
 
