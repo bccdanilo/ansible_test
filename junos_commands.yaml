@@ -1,0 +1,5 @@
+---
+  #use the command lines here
+  cod: 
+    - show interface terse
+    - show configuration

@@ -1,0 +1,28 @@
+- name: test
+  gather_facts: no
+  hosts: vmx
+  connection: local
+  roles:
+    - Juniper.junos #install 
+
+#import command lines and user/passwd from files (since they r in the same folder, please consider using a path here)
+  vars_files:
+    - hosts_var.yaml 
+    - junos_commands.yaml
+  
+
+  tasks:
+    - name: Retrieve data from junos OS
+      junipernetworks.junos.junos_command: 
+        provider: "{{cli}}" #use credentials
+        commands: "{{cod}}" #use commands vars
+        display: text # Or json, xml, set
+      timeout: 240
+      register: result #register output in result var
+
+    - name: Paste data
+      debug: 
+       var: result.stdout_lines #just to paste data
+  
+
+#future updates: create an error treatement; improve task to accept set commands; improve task to differ command types and alternate the display value
